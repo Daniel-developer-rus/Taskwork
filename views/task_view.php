@@ -77,16 +77,16 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <?php if ($pageSelected != 1) : ?>
-                        <li class="page-item"><a class="page-link" href="get_task_controller.php?page=<?php echo ($pageSelected - 1) ?>">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="get_task_controller.php?page=<?php echo ($pageSelected - 1) ?><?php echo $_GET['column'] ? '&column='.$_GET['column'] : '' ?><?php echo $_GET['order'] ? '&order='.$_GET['order'] : '' ?>">Previous</a></li>
                     <?php endif; ?>
 
                     <?php for ($i = 1; $i <= $totalPage; $i++) : $active = ($pageSelected == $i) ? 'active' : '';  ?>
 
-                        <li class="page-item <?php echo $active ?>"><a class="page-link" href="get_task_controller.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                        <li class="page-item <?php echo $active ?>"><a class="page-link" href="get_task_controller.php?page=<?php echo $i ?><?php echo $_GET['column'] ? '&column='.$_GET['column'] : '' ?><?php echo $_GET['order'] ? '&order='.$_GET['order'] : '' ?>"><?php echo $i ?></a></li>
                     <?php endfor; ?>
 
                     <?php if ($pageSelected != $totalPage) : ?>
-                        <li class="page-item"><a class="page-link" href="get_task_controller.php?page=<?php echo ($pageSelected + 1) ?>">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="get_task_controller.php?page=<?php echo ($pageSelected + 1) ?><?php echo $_GET['column'] ? '&column='.$_GET['column'] : '' ?><?php echo $_GET['order'] ? '&order='.$_GET['order'] : '' ?>">Next</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -109,7 +109,7 @@ function ordenator($columnSelected, $columnValue, $orderBy)
         ) : ?>
             <i class="fas fa-arrow-up"></i>
         <?php else : ?>
-            <a href="get_task_controller.php?column=<?php echo $columnValue ?>&&order=asc"> <i class="fas fa-arrow-up"></i></a>
+            <a href="get_task_controller.php?<?php echo $_GET['page'] ? '&page='.$_GET['page'] : '' ?>&column=<?php echo $columnValue ?>&order=asc"> <i class="fas fa-arrow-up"></i></a>
         <?php endif; ?>
         <?php if (
             isset($columnSelected) && $columnSelected == $columnValue && $orderBy ==
@@ -117,7 +117,7 @@ function ordenator($columnSelected, $columnValue, $orderBy)
         ) : ?>
             <i class="fas fa-arrow-down"></i>
         <?php else : ?>
-            <a href="get_task_controller.php?column=<?php echo $columnValue ?>&&order=desc"><i class="fas fa-arrow-down"></i></a>
+            <a href="get_task_controller.php?<?php echo $_GET['page'] ? '&page='.$_GET['page'] : '' ?>&column=<?php echo $columnValue ?>&order=desc"><i class="fas fa-arrow-down"></i></a>
         <?php endif; ?>
     </div>
 

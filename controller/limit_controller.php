@@ -4,7 +4,6 @@
 class limit{
 
     public static function page_selected(){
-
         $pageSelected = isset($_GET['page']) ? $_GET['page'] : 1;
         return $pageSelected;
     }
