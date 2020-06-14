@@ -1,5 +1,6 @@
-<?php
-require '../model/dbconnection.php';
+<?php 
+
+require 'dbconnection.php';
 // define variables and set to empty values
 $login = $password ="";
 
@@ -8,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = test_input($_POST["password"]);
 
   //Retrieve the user account information for the given username.
-  $pdo = getDB();
+  $pdo = connect::conn();
   $sql = "SELECT id, login, password FROM users WHERE login = :login and password = :password";
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':login', $login);
@@ -24,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 } else{
   $_SESSION['user_id'] = $user['login'];
-  header('Location: ../views/task.php');
+  header('Location: get_task_controller.php');
 }
 }
 function test_input($data) {

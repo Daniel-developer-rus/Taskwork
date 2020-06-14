@@ -1,14 +1,10 @@
 <?php 
-require '../model/dbconnection.php';
-
-if (!empty($_SESSION['user_id'])){
-
+require 'dbconnection.php';
 
 if (isset($_GET['id'])){
 
     $id = $_GET['id'];
-
-    $pdo = getDB();
+    $pdo = connect::conn();
     $querry = "SELECT * FROM  task WHERE id = $id";
     $stmt= $pdo->prepare($querry);
     $stmt->execute();
@@ -37,10 +33,8 @@ if (isset($_POST['update'])){
     if (!$stmt){
         die('Querry failed');
     }
-    header('Location: task.php');
+    header('Location: get_task_controller.php');
 } 
-} else {
-    header('Location: ../views/task.php');
-}
+
 $pdo= null;
 ?>

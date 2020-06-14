@@ -10,7 +10,7 @@
             <h3 class="mb-5">
                 <em>Store your Task</em>
             </h3>
-             <a href="views/task.php" class="btn btn-primary">Let's get Started</a>
+             <a href="controller/get_task_controller.php" class="btn btn-primary">Let's get Started</a>
         </div>
     </header>
 </main>

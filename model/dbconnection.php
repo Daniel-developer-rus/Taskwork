@@ -1,28 +1,26 @@
 <?php 
+    class connect{   
 
-session_start();
-/* DATABASE CONFIGURATION */
-define('DB_SERVER', 'bngcsifk7ngxiqxnxkak-mysql.services.clever-cloud.com');
-define('DB_USERNAME', 'uelk4nmqftpgd1tw');
-define('DB_PASSWORD', 'aas6b7NJquuU7u5EJyKv');
-define('DB_DATABASE', 'bngcsifk7ngxiqxnxkak');
-define("BASE_URL", "https://worktask.herokuapp.com/"); // Eg. http://yourwebsite.com
+   public static function conn() {
 
-    function getDB() {
-        
-        $dbhost=DB_SERVER;
-        $dbuser=DB_USERNAME;
-        $dbpass=DB_PASSWORD;
-        $dbname=DB_DATABASE;
+
+        $dbhost="bngcsifk7ngxiqxnxkak-mysql.services.clever-cloud.com";
+        $dbuser="uelk4nmqftpgd1tw";
+        $dbpass="aas6b7NJquuU7u5EJyKv";
+        $dbname="bngcsifk7ngxiqxnxkak";
+       
         try {
-        $dbConn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass); 
-        $dbConn->exec("SET CHARACTER SET utf8");
-        $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $dbConn;
+        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass); 
+        $conn->exec("SET CHARACTER SET utf8");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage();
+
         }
 
+        return $conn;
     }
+
+}
 ?>

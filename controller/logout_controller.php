@@ -2,6 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: ../views/task.php');
+header('Location: get_task_controller.php');
 
 ?>

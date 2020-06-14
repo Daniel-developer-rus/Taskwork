@@ -1,7 +1,3 @@
-<?php 
-include("../controller/edit.php")
-?>
-
 <?php include("partials/header.php") ?>
 <?php include("partials/nav.php") ?>
 
@@ -10,7 +6,7 @@ include("../controller/edit.php")
         <div class="col-md-4 mx-auto">
             <div class="card card-body">
 
-                <form action="editTask.php?id=<?php echo $_GET['id'] ?>"  method="POST">
+                <form action="edit_controller.php?id=<?php echo $_GET['id'] ?>"  method="POST">
                     <div class="form-group">
                       <input type="text" name="name" class="form-control" value="<?= $row['name']?>">  
                     </div>

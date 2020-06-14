@@ -1,6 +1,7 @@
 <?php 
 
-require '../model/dbconnection.php';
+require 'dbconnection.php';
+$db = connect::conn();
 
     $name = $email = $description = "";
 
@@ -10,14 +11,12 @@ require '../model/dbconnection.php';
       $description = test_input($_POST["description"]);
 
       try{
-
-        $db = getDB();
         $stmt = $db->prepare("INSERT INTO task(name, email,description) VALUES (:name,:email,:description)"); 
         $stmt->bindValue(':name', $name );
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':description', $description);
         $stmt->execute();
-        header('Location: ../views/task.php');
+        header('Location: get_task_controller.php');
         $db = null;
     }catch(PDOException $e) {
         echo "Error: " . $e->getMessage();

@@ -1,25 +1,12 @@
-<?php
-require '../controller/getTask.php';
-?>
 <?php include("partials/header.php") ?>
 <?php include("partials/nav.php") ?>
 <div class="container p-4">
-    <?php if (!empty($message)) : ?>
-        <div class="alert alert-<?php echo $class ?> alert-dismissible fade show d-block text-center" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <strong><?php echo $message ?></strong>
-        </div>
-    <?php endif; ?>
     <div class="row">
 
         <div class="col-md-12">
-
             <table class="table table-bordered">
                 <thead>
-                <?php if($totalTask>0): ?>
+                <?php if (!empty($result_task)): ?>
                     <tr>
                         <?php
                         $column = isset($_GET['column']) ? $_GET['column'] : null;
@@ -33,34 +20,31 @@ require '../controller/getTask.php';
                             <?php ordenator($column, 'email', $orderBy) ?>
                         </th>
                         <th>Task</th>
-                        <?php if (!empty($_SESSION['user_id'])) : ?>
-                            <th>Action</th>
+                        <?php if (!empty($_SESSION['user_id'])): ?>
+                        <th>Action</th>
                         <?php endif; ?>
                         <th>Status
                             <?php ordenator($column, 'status', $orderBy) ?>
                         </th>
                         </th>
                     </tr>
-                        <?php endif; ?>
+                    <?php endif; ?>
                 </thead>
                 <tbody>
 
-
-                    <?php foreach ($results as $row) : ?>
+                    <?php foreach ($result_task as $row) : ?>
                         <tr>
                             <td><?php echo $row['name'] ?></td>
                             <td><?php echo $row['email'] ?></td>
                             <td><?php echo $row['description'] ?></td>
-
-                            <?php if (!empty($_SESSION['user_id'])) : ?>
-                                <td class="text-center">
-                                    <a href="editTask.php?id=<?php echo $row['id'] ?>" class="btn btn-secondary mb-1 mr-2">
-                                        <i class="fas fa-marker"></i></a>
-                                    <a href="task.php?idDelete=<?php echo $row['id'] ?>" class="btn btn-danger mb-1 ">
-                                        <i class="far fa-trash-alt"></i></a>
-                                </td>
+                            <?php if (!empty($_SESSION['user_id'])): ?>
+                            <td class="text-center">
+                                <a href="edit_controller.php?id=<?php echo $row['id'] ?>" class="btn btn-secondary mb-1 mr-2">
+                                    <i class="fas fa-marker"></i></a>
+                                <a href="delete_controller.php?id=<?php echo $row['id'] ?>" class="btn btn-danger mb-1 ">
+                                    <i class="far fa-trash-alt"></i></a>
+                            </td>
                             <?php endif; ?>
-
                             <?php if ($row['status'] == 1) : ?>
 
                                 <td class="text-center"><span class="btn btn-success "><i class="fas fa-angle-down"></i></span></td>
@@ -80,25 +64,29 @@ require '../controller/getTask.php';
 
 <div class="container text-center">
     <div class="row text-center">
-        <a href="createTask.php" class="btn btn-primary btn-lg active mx-auto" role="button" aria-pressed="true">Add a new task</a>
+        <a href="create_task_controller.php" class="btn btn-primary btn-lg active mx-auto" role="button" aria-pressed="true">Add a new task</a>
     </div>
 </div>
+<?php $total_class= new limit();
+        $totalPage = $total_class->total_page();
+        $pageSelected= $total_class->page_selected();
+ ?>
 <?php if ($totalPage > 0) : ?>
     <div class="container">
         <div class="row">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <?php if ($pageSelected != 1) : ?>
-                        <li class="page-item"><a class="page-link" href="task.php?page=<?php echo ($pageSelected - 1) ?>">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="get_task_controller.php?page=<?php echo ($pageSelected - 1) ?>">Previous</a></li>
                     <?php endif; ?>
 
                     <?php for ($i = 1; $i <= $totalPage; $i++) : $active = ($pageSelected == $i) ? 'active' : '';  ?>
 
-                        <li class="page-item <?php echo $active ?>"><a class="page-link" href="task.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                        <li class="page-item <?php echo $active ?>"><a class="page-link" href="get_task_controller.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
                     <?php endfor; ?>
 
                     <?php if ($pageSelected != $totalPage) : ?>
-                        <li class="page-item"><a class="page-link" href="task.php?page=<?php echo ($pageSelected + 1) ?>">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="get_task_controller.php?page=<?php echo ($pageSelected + 1) ?>">Next</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
@@ -107,6 +95,7 @@ require '../controller/getTask.php';
 <?php endif; ?>
 
 <?php include("partials/footer.php") ?>
+
 
 <?php
 function ordenator($columnSelected, $columnValue, $orderBy)
@@ -120,7 +109,7 @@ function ordenator($columnSelected, $columnValue, $orderBy)
         ) : ?>
             <i class="fas fa-arrow-up"></i>
         <?php else : ?>
-            <a href="task.php?column=<?php echo $columnValue ?>&order=asc"> <i class="fas fa-arrow-up"></i></a>
+            <a href="get_task_controller.php?column=<?php echo $columnValue ?>&&order=asc"> <i class="fas fa-arrow-up"></i></a>
         <?php endif; ?>
         <?php if (
             isset($columnSelected) && $columnSelected == $columnValue && $orderBy ==
@@ -128,13 +117,10 @@ function ordenator($columnSelected, $columnValue, $orderBy)
         ) : ?>
             <i class="fas fa-arrow-down"></i>
         <?php else : ?>
-            <a href="task.php?column=<?php echo $columnValue ?>&order=desc"><i class="fas fa-arrow-down"></i></a>
+            <a href="get_task_controller.php?column=<?php echo $columnValue ?>&&order=desc"><i class="fas fa-arrow-down"></i></a>
         <?php endif; ?>
     </div>
 
 <?php
-
-
-
 }
 ?>

@@ -8,10 +8,10 @@
       <ul class="navbar-nav navbar-dark ml-auto">
   
         <li class="nav-item">
-        <a href="login.php" class="nav-link">LogIn</a>
+        <a href="auth_controller.php" class="nav-link">LogIn</a>
       </li>
       <li class="nav-item">
-        <a href="../controller/logout.php" class="nav-link">Logout</a>
+        <a href="logout_controller.php" class="nav-link">Logout</a>
       </li>
       </ul>
     </div>
