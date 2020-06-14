@@ -1,6 +1,16 @@
 <?php include("partials/header.php") ?>
 <?php include("partials/nav.php") ?>
-
+<?php if (!empty($message)): ?>
+<div class="container text-center mt-1">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong><?php echo $message ?></strong> 
+    </div>
+</div>
+<?php endif; ?>
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
@@ -8,12 +18,12 @@
 
                 <form action="edit_controller.php?id=<?php echo $_GET['id'] ?>"  method="POST">
                     <div class="form-group">
-                      <input type="text" name="name" class="form-control" value="<?= $row['name']?>">  
+                      <input type="text" name="name" class="form-control name" value="<?= $row['name']?>">  
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="description"  rows="2" ><?= $row['description'] ?></textarea>
+                        <textarea class="form-control description" name="description"  rows="2" ><?= $row['description'] ?></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group done">
                         <?php if ($status==1): ?>
                     <input type="checkbox" checked id="done" name="done" value="done">
                         <?php else: ?>
@@ -22,7 +32,8 @@
                     <label for="done">Task done</label><br> 
                     </div>
                     <div class="form-group">
-                      <input type="submit" class="btn btn-primary btn-block" name="update" value="Send">  
+                      <input type="submit" class="btn btn-primary update-task" name="update" value="Send">  
+                      <a href="get_task_controller.php" class="btn btn-secondary">Go to task</a>
                     </div>
                 </form>
             </div>

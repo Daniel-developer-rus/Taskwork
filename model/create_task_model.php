@@ -16,13 +16,12 @@ $db = connect::conn();
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':description', $description);
         $stmt->execute();
-        header('Location: get_task_controller.php');
         $db = null;
+        $message = "Task created successfully";
     }catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
       }
   
-      
     }
     function test_input($data) {
       $data = trim($data);
@@ -30,11 +29,5 @@ $db = connect::conn();
       $data = htmlspecialchars($data);
       return $data;
     }
-    
-   
-
-  
-
-
 
 ?>

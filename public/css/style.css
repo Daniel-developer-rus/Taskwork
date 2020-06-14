@@ -31,7 +31,7 @@
      background: rgba(0, 0, 0, 0.7);
      width: 100%;
      max-width: 500px;
-     margin: 48px auto;
+     margin: 20px auto;
      color: #fff;
      border-radius: 5px;
  }
@@ -95,23 +95,6 @@
 }
  .contenedor-form input[type="email"]:focus {
      border-bottom: 4px solid #0075d9;
- }
-
- .contenedor-form input[type="submit"]{
-     background-color: #ff851b;
-     color: #fff;
-     border: none;
-     width: 100%;
-     padding: 10px 0;;
-     font-weight: normal;
-     font-family: 'Roboto',sans-serif;
-     letter-spacing: 1px;
-     font-size: 16px;
-     cursor: pointer;
-     transition: all 0.5s ease-in-out;
- }
- .contenedor-form input[type="submit"]:hover{
-     background: rgba(0, 117, 217, 0.7);
  }
 
  .contenedor-form .reset-password { 

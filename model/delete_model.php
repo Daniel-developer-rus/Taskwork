@@ -13,6 +13,5 @@ if (isset($_GET['id'])) {
         die('Querry failed');
     }
     $message = "Task deleted successfully";
-    header('Location: get_task_controller.php');
 }
 ?>

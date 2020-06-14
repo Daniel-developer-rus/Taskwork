@@ -21,7 +21,7 @@ if (isset($_POST['update'])){
     $name = $_POST['name'];
     $description = $_POST['description'];
 
-    if($_POST['done'] == 0){
+    if(isset($_POST['done']) == 0){
         $status = 1;
     }
 
@@ -32,9 +32,9 @@ if (isset($_POST['update'])){
 
     if (!$stmt){
         die('Querry failed');
+    }else{
+        $message = "Task updated successfully";
     }
-    header('Location: get_task_controller.php');
-} 
-
 $pdo= null;
+}
 ?>

@@ -1,6 +1,17 @@
 <?php include("partials/header.php") ?>
 <?php include("partials/nav.php") ?>
-<div class="container p-4">
+<?php if (!empty($message)) : ?>
+    <div class="container text-center mt-1">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong><?php echo $message ?></strong>
+        </div>
+    </div>
+<?php endif; ?>
+<div class="container p-1">
     <div class="row">
 
         <div class="col-md-12">
@@ -41,7 +52,7 @@
                                 <td class="text-center">
                                     <a href="edit_controller.php?id=<?php echo $row['id'] ?>" class="btn btn-secondary mb-1 mr-2">
                                         <i class="fas fa-marker"></i></a>
-                                    <a href="delete_controller.php?id=<?php echo $row['id'] ?>" class="btn btn-danger mb-1 ">
+                                    <a href="get_task_controller.php?id=<?php echo $row['id'] ?><?php echo $_GET['column'] ? '&column=' . $_GET['column'] : '' ?><?php echo $_GET['order'] ? '&order=' . $_GET['order'] : '' ?>" class="btn btn-danger mb-1 ">
                                         <i class="far fa-trash-alt"></i></a>
                                 </td>
                             <?php endif; ?>
