@@ -1,5 +1,11 @@
 <?php 
 require 'dbconnection.php';
+session_start();
+
+if (!isset($_SESSION['user_id']))
+{
+    header('Location: auth_controller.php');
+}
 
 if (isset($_GET['id'])){
 
@@ -8,6 +14,7 @@ if (isset($_GET['id'])){
     $querry = "SELECT * FROM  task WHERE id = $id";
     $stmt= $pdo->prepare($querry);
     $stmt->execute();
+
     if(isset($stmt)) {
        $row =  $stmt->fetch(PDO::FETCH_ASSOC);
         $status = $row['status'];
@@ -29,13 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     $querry = "UPDATE task set name = '$name',  description = '$description', status = '$status' WHERE id = $id";
-    $update = $pdo->prepare($querry);
-    $update->execute();
-    $update->closeCursor();
-    if (!$update){
+    $stmt = $pdo->prepare($querry);
+    $stmt->execute();
+
+    if (!$stmt){
         die('Querry failed');
     }else{
         $message = "Task updated successfully";
     }
+$pdo= null;
 }
 ?>

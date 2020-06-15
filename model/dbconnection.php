@@ -4,10 +4,10 @@
    public static function conn() {
 
 
-        $dbhost="bngcsifk7ngxiqxnxkak-mysql.services.clever-cloud.com";
-        $dbuser="uelk4nmqftpgd1tw";
-        $dbpass="aas6b7NJquuU7u5EJyKv";
-        $dbname="bngcsifk7ngxiqxnxkak";
+        $dbhost="mysql.zzz.com.ua";
+        $dbuser="Workapp1";
+        $dbpass="Workapp12020@";
+        $dbname="daniel_developer_rus";
        
         try {
         $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass); 
@@ -21,6 +21,5 @@
 
         return $conn;
     }
-
 }
 ?>
