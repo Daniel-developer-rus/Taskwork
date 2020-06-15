@@ -23,8 +23,10 @@
             <input type="text" name="name" required placeholder="Insert Your Name" autofocus autocomplete="off">
             <input type="email" name="email" required placeholder="Insert Your Email" autocomplete="off">
             <textarea name="description" placeholder="Insert Description" required autocomplete="off"></textarea>
-            <input type="submit" name="save_task" class="btn btn-warning mt-8" value="Create"  >
-            <a href="get_task_controller.php" class="btn btn-primary d-block mt-3">Go to Task</a> 
+            <div class="form-group">
+            <input type="submit" class="btn btn-primary update-task" value="Create">
+            <a href="get_task_controller.php" class="btn btn-secondary">Go to task</a>
+            </div>
         </form>
 
     </div>

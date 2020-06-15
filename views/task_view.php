@@ -52,11 +52,11 @@
                                 <td class="text-center">
                                     <a href="edit_controller.php?id=<?php echo $row['id'] ?>" class="btn btn-secondary mb-1 mr-2">
                                         <i class="fas fa-marker"></i></a>
-                                    <a href="get_task_controller.php?id=<?php echo $row['id'] ?><?php echo $_GET['column'] ? '&column=' . $_GET['column'] : '' ?><?php echo $_GET['order'] ? '&order=' . $_GET['order'] : '' ?>" class="btn btn-danger mb-1 ">
+                                    <a href="get_task_controller.php?page=<?php echo $_GET['page']?>&id=<?php echo $row['id'] ?><?php echo $_GET['column'] ? '&column=' . $_GET['column'] : '' ?><?php echo $_GET['order'] ? '&order=' . $_GET['order'] : '' ?>" class="btn btn-danger mb-1 ">
                                         <i class="far fa-trash-alt"></i></a>
                                 </td>
                             <?php endif; ?>
-                            <?php if ($row['status'] == 1) : ?>
+                            <?php if ($row['status'] === "done") : ?>
 
                                 <td class="text-center"><span class="btn btn-success "><i class="fas fa-angle-down"></i></span></td>
 

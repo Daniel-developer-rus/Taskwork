@@ -1,6 +1,5 @@
 
 <?php include("views/partials/header.php") ?>
-<?php include("views/partials/nav.php") ?>
 
 
 <main class="index">
